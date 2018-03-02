@@ -14,3 +14,4 @@ for day in days:
     plt.xlabel(day)
     
 plt.subplots_adjust(wspace=1)
+plt.show()
