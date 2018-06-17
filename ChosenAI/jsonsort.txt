@@ -1,0 +1,1 @@
+{"animals": [{"type": "dog", "name": "Coe", "age": 5, "color": [{"code": "brown"}]}, {"type": "pig", "name": "Poe", "age": 6, "color": [{"code": "black"}]}, {"type": "cat", "name": "Doe", "age": 7, "color": [{"code": "white"}]}]}
