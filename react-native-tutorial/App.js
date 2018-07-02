@@ -1,107 +1,141 @@
-import React from 'react';
-import { StyleSheet, Animated, Text, View, Dimensions, Button } from 'react-native';
-import { Video } from 'expo';
-import { MaterialIcons, Octicons } from '@expo/vector-icons';
-import { StackNavigator } from 'react-navigation';
+import React, { Component } from 'react';
+import { AppRegistry, View, Image, StyleSheet, Text, Button, TouchableOpacity, TextInput } from 'react-native';
 
-class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home',
-  };
-  render () {
-    const { navigate } = this.props.navigation;
-    return (<Button title="Go to Gina's Profile" onPress={() => navigate('Profile')} />);
+export default class DisplayAnImage extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.email = { text: 'name@domain.ext' };
+    this.pswrd = { text: 'name@domain.ext' };
+  }
+  
+  render() {
+    return (
+      
+      <View style={styles.container}>
+        
+        <View style={styles.containertop}>
+        <Image style={styles.image} source={require('assets/images/872zcnwY_400x400.jpg')}/>
+        </View>
+        
+        <View style={styles.container}>
+        <Text style={styles.titleText}>
+        Sign in
+        </Text>
+        </View>
+        
+        <View style={styles.container}>
+        
+        <Text style={styles.baseText}>
+        Email
+        </Text>
+        </View>
+        
+        <View style={styles.container}>
+        
+        <TextInput
+        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        onChangeText={(text) => this.setState({text})}
+        value={this.email.text}/>
+        </View>
+        
+        <View style={styles.container}>
+        
+        <Text style={styles.baseText}>
+        Password
+        </Text>
+        </View>
+        
+        <View style={styles.container}>
+        
+        <TextInput
+        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        onChangeText={(text) => this.setState({text})}
+        value={this.pswrd.text}/>
+        </View>
+        
+        <View style={styles.container}>
+        <TouchableOpacity style={styles.button} onPress={this.onPress}>
+        <Text style={styles.buttontxt}>
+        Sign in
+        </Text>
+        </TouchableOpacity>
+        
+        <Text style={styles.purpText}>
+        Forgot password
+        </Text>
+        </View>
+        
+        <View style={styles.containerbtm}>
+        <Text style={styles.baseText}>
+        © OnCare.
+        </Text>
+        <Text style={styles.purpText}>
+        Terms and conditions
+        </Text>
+        </View>
+        
+      </View>
+    );
   }
 }
 
-class ProfileScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Profile',
-  };
-  render () {
-    const { navigate } = this.props.navigation;
-    return (<Button title="Go to Gina's Homepage" onPress={() => navigate('Home')} />);
-  }
-}
-
-const App = StackNavigator({
-  Home: { screen: HomeScreen },
-  Profile: { screen: ProfileScreen },
-});
-
-export default App;
-
-// export default class App extends React.Component {
-//   state = {
-//     mute: false,
-//     fullScreen: false,
-//     shouldPlay: true,
-//   }
-
-//   handlePlayAndPause = () => {
-//     this.setState(prevState => ({
-//       shouldPlay: !prevState.shouldPlay
-//     }));
-//   }
-
-//   handleVolume = () => {
-//     this.setState(prevState => ({
-//       mute: !prevState.mute,
-//     }));
-//   }
-
-// //   componentDidMout() {console.log("MOUNTED!")}
-
-// //   render() {
-// //     const { width } = Dimensions.get('window');
-    
-// //     return (
-// //       <View style={styles.container}>
-// //         <View>
-// //             <Text style={{ textAlign: 'center' }}> React Native Video </Text>
-// //             <Video
-// //               source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
-// //               shouldPlay={this.state.shouldPlay}
-// //               resizeMode="cover"
-// //               style={{ width, height: 300 }}
-// //               isMuted={this.state.mute}
-// //             />
-// //             <View style={styles.controlBar}>
-// //               <MaterialIcons 
-// //                 name={this.state.mute ? "volume-mute" : "volume-up"}
-// //                 size={45} 
-// //                 color="white" 
-// //                 onPress={this.handleVolume} 
-// //               />
-// //               <MaterialIcons 
-// //                 name={this.state.shouldPlay ? "pause" : "play-arrow"} 
-// //                 size={45} 
-// //                 color="white" 
-// //                 onPress={this.handlePlayAndPause} 
-// //               />
-// //             </View>
-// //           </View>
-// //       </View>
-// //     );
-// //   }
-// }
+// skip this line if using Create React Native App
+AppRegistry.registerComponent('DisplayAnImage', () => DisplayAnImage);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  controlBar: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 45,
-    flexDirection: 'row',
+  containertop: {
+    // flex: .7,
+    backgroundColor: '#FF821E',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  }
+  },
+  containerbtm: {
+    flex: 1,
+    justifyContent: 'space-between'
+  },
+  image: {
+    height: 100,
+    width: 100,
+  },
+  button: {
+    alignItems: 'center',
+    padding: 10,
+    marginTop:10,
+    paddingTop:15,
+    paddingBottom:15,
+    marginLeft:30,
+    marginRight:30,
+    backgroundColor:'#c4a4c4',
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#fff',
+  },
+  buttontxt: {
+    fontWeight: 'bold',
+    fontFamily: 'Verdana',
+    color: '#fff'
+  },
+  baseText: {
+    fontWeight: 'bold',
+    fontFamily: 'Verdana',
+    paddingTop:5,
+    paddingBottom:5,
+  },
+  purpText: {
+    fontWeight: 'bold',
+    fontFamily: 'Verdana',
+    color: '#c4a4c4',
+    paddingTop:5,
+    paddingBottom:5,
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontFamily: 'Verdana', // to add custom font see https://medium.com/react-native-training/react-native-custom-fonts-ccc9aacf9e5e
+    paddingTop:5,
+    paddingBottom:5,
+  },
 });

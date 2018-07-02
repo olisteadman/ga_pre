@@ -1,3 +1,5 @@
+// https://www.youtube.com/watch?v=B98jc8hdu9g
+
 class GroovyTut {
  static void main(String[] args) {
 
@@ -247,28 +249,160 @@ class GroovyTut {
   */
 
   // methods aka functions
-  sayHello();
+  /*
+		sayHello();
 
-  println("5 + 4 = " + getSum(5,4));
+		println("5 + 4 = " + getSum(5,4));
 
- def myName = "Derek";
- passByValue(myName);
- println("In Main " + myName);
+		def myName = "Derek";
+		passByValue(myName);
+		println("In Main " + myName);
 
+		def listToDouble = [1,2,3,4];
+		listToDouble = doubleList(listToDouble);
+		println(listToDouble);
 
+		def nums = sumAll(1,2,3,4);
+		println("Sum : " + nums);
+		println(listToDouble);
 
+		def factorial = factorial(4);
+		println("Factorial 4 : " + factorial);
+
+		}
+
+		static def sayHello(){
+		println("Hello");
+		}
+
+		static def getSum(num1=0, num2=0){
+		return num1 + num2;
+		}
+
+		static def passByValue(name){
+		name = "In Function";
+		println("Name : " + name);
+		}
+
+		static def doubleList(list){
+		def newList = list.collect { it * 2 };
+		return newList;
+		}
+
+		static def sumAll(int... num){
+		def sum = 0;
+		num.each { sum += it; }
+		return sum;
+		}
+
+		static def factorial(num) {
+		if(num <= 1){
+		return 1;
+		} else {
+		return (num * factorial(num - 1));
+		}
+		}
+  */
+
+  // closures
+  /*
+		def getFactorial = {num -> (num <= 1 ? 1 : num * call(num - 1))}
+
+		println(" Factorial 4 : " + getFactorial(4));
+
+		def greeting = "Goodbye";
+		def sayGoodbye = {theName -> println("$greeting $theName")}
+		sayGoodbye("Derek");
+
+		def numList = [1,2,3,4];
+		numList.each {println(it)};
+
+		def employees = [
+		'Paul' : 34,
+		'Sally' : 35,
+		'Sam' : 36,]
+
+		employees.each {println("$it.key : $it.value");}
+
+		def randNums = [1,2,3,4,5,6];
+		randNums.each {num -> if(num % 2 == 0)
+		println(num)};
+
+		def namelist = ["Doug", "Sally", "Sue"];
+
+		def matchEle = namelist.find {item -> item == "Sue"}
+
+		println(matchEle);
+
+		def randNumList = [1,2,3,4,5,6,];
+		def numMatches = randNumList.findAll {item -> item > 4}
+		println(numMatches);
+
+		println("> 5 : " + randNumList.any {item -> item > 5})
+		println("> 1: " + randNumList.every {item -> item > 1})
+		println("Double : " + randNumList.collect {item -> item * 2})
+
+		def getEven = {num -> return(num % 2 == 0)}
+		def evenNums = listEdit(randNumList, getEven);
+		println("Evens : " + evenNums);
+
+		}
+
+		static def listEdit(list, clo){
+		return list.findAll(clo);
+		}
+  */
+
+  // file io
+  /*
+		new File("test.txt").eachLine {
+		line -> println "$line";
+		}
+
+		new File("test.txt").withWriter('utf-8') {
+		writer -> writer.writeLine("Line 4");
+		}
+
+		File file = new File("test.txt");
+		file.append('Line 5');
+
+		println(file.text);
+
+		println("File Size: ${file.length()}");
+		println("Dir : ${file.isDirectory()}");
+
+		def newFile = new File("test2.txt");
+		newFile << file.text;
+
+		newFile.delete();
+
+		def dirFiles = new File("").listRoots();
+
+		dirFiles.each {
+		item -> println file.absolutePath;
+		}
+  */
+
+  // OOP
+  /*
+		def king = new Animal('King', 'Growl');
+
+		println("$king.name says $king.sound");
+
+		king.setSound('Grrrrrr');
+
+		println("$king.name says $king.sound");
+
+		king.run();
+
+		println(king.toString());
+
+		def grover = new Dog('Grover', 'Grrr', 'Derek');
+
+		king.makeSound();
+		grover.makeSound();
+  */
+  
  }
 
- static def sayHello(){
- 	println("Hello");
- }
-
- static def getSum(num1=0, num2=0){
- 	return num1 + num2;
- }
-
- static def passByValue(name){
- 	name = "In Function";
- println("Name : " + name);
-}
 }

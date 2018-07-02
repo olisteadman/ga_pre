@@ -138,6 +138,9 @@ sambashare:x:126:ubuntu
 
 wc -l < testfile is equivalent to cat testfile | wc -l
 
+ls kjhgfghji && echo "success!" <== this gives the error but not success msg
+ls kjhgfjkkj || echo "success!" <== this gives the error and the success msg
+
 kill all processes starting with cupsd using
 sudo killall cupsd
 
@@ -157,14 +160,21 @@ check out strace
 
 ps -aux | grep udevd
 
+bash scripting:
+- start with #!/bin/bash
+- can pass vars into shell using source
+- exit codes
+
 ifconfig
+
+!$ to repeat last word of last line entered
 
 list what is mounted using
 df -ah
 
 check out man hier(archy)
 
-everything begins at root, then you have bin(ary) for base OS commands, 
+everything begins at root, then you have bin(ary) for base OS commands, e.g. cat, ls, chmod
 
 output here if don't want to see on console
 >/dev/null
