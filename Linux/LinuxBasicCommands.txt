@@ -1,0 +1,186 @@
+LinuxBasicCommands
+
+pwd
+ls
+cd
+clear
+sudo apt-get update
+sudo apt-get upgrade
+apt-cache search htop
+sudo apt-get install htop
+cat /etc/apt/sources.list
+sudo add-apt-repository ppa:cassou/emacs <== a way to get latest features for some software that may not yet be apt supported
+
+
+who (w)
+ln -s file1 file2
+(sudo) netstat -tupln
+ls -alh
+cat actually concatenates 2 files...
+prog1 | prog2 
+assign using echo "text" > somefile.txt
+append using echo "text" >> somefile.txt
+e.g. ls /etc/ -a > newfilelistingthecontentsofmyetcfolder.txt
+
+use 0/1/2 before these to use STIN/STOUT/STERR
+can even write an email using mail -s "here is a subject" username < message.txt
+ps (aux) | less
+
+grep for processes using ps aux | grep firefox
+(always see at least 2: one is the search you just made haha)
+
+prog1 && prog2 where && means "if prog1 was successful, move to prog2"
+cat file1 | cut -d: -f2
+cat file1 | sort -bf
+cat file1 | uniq
+wc file1
+cat file1 | grep 
+
+head
+tail
+less
+
+(cat file.txt |) grep someone ./* | uniq | cut -d: -f1
+
+drwx owner
+r-xr group
+-r   else
+
+chmod:
+7 is rwx
+6 is rw
+5 is rx
+4 is r
+3 is wx
+2 is w
+1 is x
+0 is no rights at all
+
+chmod (-R) dir
+chown
+id
+whoami
+
+each time new user created they generally get a new 1-user group created too
+
+sudo -i sets sudo until further notice
+
+tail /etc/passwd (see below)
+gives username:password:userID:defaultGroupID:humanReadableInfo:homedir:defaultShell
+
+ubuntu@ubuntu:~$ sudo -i
+root@ubuntu:~# tail /etc/passwd
+kernoops:x:112:65534:Kernel Oops Tracking Daemon,,,:/:/usr/sbin/nologin
+saned:x:113:119::/var/lib/saned:/usr/sbin/nologin
+pulse:x:114:120:PulseAudio daemon,,,:/var/run/pulse:/usr/sbin/nologin
+avahi:x:115:122:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/usr/sbin/nologin
+colord:x:116:123:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+hplip:x:117:7:HPLIP system user,,,:/var/run/hplip:/bin/false
+geoclue:x:118:124::/var/lib/geoclue:/usr/sbin/nologin
+gnome-initial-setup:x:119:65534::/run/gnome-initial-setup/:/bin/false
+gdm:x:120:125:Gnome Display Manager:/var/lib/gdm3:/bin/false
+ubuntu:x:999:999:Live session user,,,:/home/ubuntu:/bin/bash
+
+linecount using:
+cat pathtodoc | wc -l
+
+tail /etc/shadow (see below)
+gives username:hashpassword:dateSet:dateExpiry:howLongYouHaveToChangeIt:etc
+
+root@ubuntu:~# tail /etc/shadow
+kernoops:*:17647:0:99999:7:::
+saned:*:17647:0:99999:7:::
+pulse:*:17647:0:99999:7:::
+avahi:*:17647:0:99999:7:::
+colord:*:17647:0:99999:7:::
+hplip:*:17647:0:99999:7:::
+geoclue:*:17647:0:99999:7:::
+gnome-initial-setup:*:17647:0:99999:7:::
+gdm:*:17647:0:99999:7:::
+ubuntu::17707:0:99999:7:::
+
+if password == * or !, the user cannot login. Can manually set this. Other basic commands:
+useradd
+userdel
+most common argz are
+-m create a home dir
+-d say where home dir should be eg /home/schnerg
+-u userID eg 1501
+-g groupID eg 66
+-s defaultShell eg /bin/bash
+must end with username eg schnerg
+
+use man newusers for batch adding...
+
+ls /etc/skel gives the skeleton profile for users...
+
+set a pw using
+passwd schnerg
+
+check for pw using tail /etc/shadow
+lock a user's account using usermod -L schnerg
+unlk a user's account using usermod -U schnerg
+
+tail /etc/group (see below)
+gives group:etc:usersInGroup
+
+root@ubuntu:~# tail /etc/group
+scanner:x:118:saned
+saned:x:119:
+pulse:x:120:
+pulse-access:x:121:
+avahi:x:122:
+colord:x:123:
+geoclue:x:124:
+gdm:x:125:
+ubuntu:x:999:
+sambashare:x:126:ubuntu
+
+wc -l < testfile is equivalent to cat testfile | wc -l
+
+ls kjhgfghji && echo "success!" <== this gives the error but not success msg
+ls kjhgfjkkj || echo "success!" <== this gives the error and the success msg
+
+kill all processes starting with cupsd using
+sudo killall cupsd
+
+kill all dave's processes using
+sudo pkill -u dave 
+
+set niceness i.e. priority using
+nice -n -20 [processID or pathtofile.ext] (for super high priority)
+sudo renice -5 [processID or pathtofile.ext] (for a bit less priority)
+
+get first word of file using
+cat filename | cut -d " " -f1
+
+check /proc/ for mega details on all processes ... "the matrix itself"
+
+check out strace
+
+ps -aux | grep udevd
+
+bash scripting:
+- start with #!/bin/bash
+- can pass vars into shell using source
+- exit codes
+
+ifconfig
+
+!$ to repeat last word of last line entered
+
+list what is mounted using
+df -ah
+
+check out man hier(archy)
+
+everything begins at root, then you have bin(ary) for base OS commands, e.g. cat, ls, chmod
+
+output here if don't want to see on console
+>/dev/null
+
+if forgot to enter vim as superuser, exit with this so do't have to recreate entire file
+:w !sudo tee % > /dev/null
+
+The dominant desktop operating system is Microsoft Windows with a market share of around 82.74%. macOS by Apple Inc. is in second place (13.23%), and the varieties of Linux are collectively in third place (1.57%).[3] In the mobile (smartphone and tablet combined) sector, use in 2017 is up to 70% of Google's Android[4] and according to third quarter 2016 data, Android on smartphones is dominant with 87.5 percent and a growth rate 10.3 percent per year, followed by Apple's iOS with 12.1 percent and a per year decrease in market share of 5.2 percent, while other operating systems amount to just 0.3 percent.[5] Linux distributions are dominant in the server and supercomputing sectors. Other specialized classes of operating systems, such as embedded and real-time systems, exist for many applications.
+
